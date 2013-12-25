@@ -1,0 +1,5 @@
+name: CB-MC
+main: me.ove.bukkit.effects.Main
+author: Ove98
+version: 1.0
+description: Effects. No commands.

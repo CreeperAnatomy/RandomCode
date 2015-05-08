@@ -1,0 +1,51 @@
+package me.creeperanatomy.demoniccrates.commands;
+
+import me.creeperanatomy.demoniccrates.DemonicCrates;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class GiveCrates implements CommandExecutor {
+	
+	DemonicCrates plugin;
+	
+	public GiveCrates(DemonicCrates plugin) {
+		this.plugin = plugin;
+	}
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
+		
+		Player p = (Player) sender;
+		
+		if(cmd.getLabel().equalsIgnoreCase("Crates")) {
+			
+			if(args.length == 0) {
+				p.sendMessage("/Crates Give <Player> <Amount>");
+			}
+			
+			if(args[0].equalsIgnoreCase("Give")) {
+				p.sendMessage("You have " + plugin.crateamount + " crates!");
+				p.sendMessage("You just got given a crate!");
+				plugin.crateamount++;
+				
+				DemonicCrates.crates.put(p.getName(), plugin.crateamount);
+				plugin.cratesconfig.set(p.getName(), plugin.crateamount);
+				
+				if(plugin.crateamount == 1) {
+				p.sendMessage("You now have " + plugin.crateamount + " crate!");
+				}
+				
+				if(plugin.crateamount > 1) {
+				p.sendMessage("You now have " + plugin.crateamount + " crates!");
+				}
+				
+			}
+			
+		}
+		
+		return false;
+	}
+
+}
